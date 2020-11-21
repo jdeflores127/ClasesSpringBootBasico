@@ -7,14 +7,17 @@
 <body>
 	<h1>Formulario</h1>
 	<br />
-	 <form>
-	  <label>Id</label><br />
-	  <input type="text"><br />
-	  <label>Nombre</label><br />
-	  <input type="text"><br />
-	  <label>Edad</label><br />
-	  <input type="text"><br />
+	<!-- En HTML el orden de los atributos no importa -->
+	<!-- method: post indica que se va a enviar por metodo post -->
+	 <form method="POST" action="/guardaFormulario">
+	  <label>Nombre</label><br/>
+	  <input type="text" name="nombreForm"><br/>
+	  
+	  <label>Edad</label><br/>
+	  <input type="text" name="edadForm"><br/>
+	  
 	  <input type="submit" value="Enviar">
+	  
 	</form> 
 </body>
 </html>

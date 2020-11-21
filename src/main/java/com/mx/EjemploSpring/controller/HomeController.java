@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mx.EjemploSpring.model.Persona;
 import com.mx.EjemploSpring.services.FactoryPersonaService;
@@ -78,5 +80,18 @@ public class HomeController {
 		model.addAttribute("personaModel",personas);
 		return "mostrarPersona";
 	}
+	
+	@PostMapping("/guardaFormulario")
+	public String procesarRespuestaFormulario(
+			@RequestParam("nombreForm") String nombre,
+			@RequestParam("edadForm") int edad){
+		
+		System.out.println("el nombre es: "+nombre);
+		System.out.println("la edad es: "+edad);
+		
+		
+		return "formulario";
+	}
+	
 
 }
