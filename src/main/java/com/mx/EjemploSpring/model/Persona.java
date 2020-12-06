@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 public class Persona {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO) //los id los va a generar la db
+	@GeneratedValue(strategy=GenerationType.TABLE) //los id los va a generar la db
 	private int id;
 	@Column(name="nombre")
 	private String nombre;

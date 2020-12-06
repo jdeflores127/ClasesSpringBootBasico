@@ -2,6 +2,8 @@ package com.mx.EjemploSpring.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ import com.mx.EjemploSpring.services.PersonaService;
 
 @Controller
 public class HomeController {
+	
+	@Autowired @Qualifier("generica") PersonaService ps;
+	
 	@GetMapping("/home")
 	public String goHome() {
 		int variableEjemplo =12;
@@ -86,8 +91,14 @@ public class HomeController {
 			@RequestParam("nombreForm") String nombre,
 			@RequestParam("edadForm") int edad){
 		
+		Persona p=new Persona();
+		p.setNombre(nombre);
+		p.setEdad(edad);
+		
 		System.out.println("el nombre es: "+nombre);
 		System.out.println("la edad es: "+edad);
+		
+		ps.insertarPersona(p);
 		
 		
 		return "formulario";

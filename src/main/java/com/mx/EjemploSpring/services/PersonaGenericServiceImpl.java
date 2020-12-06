@@ -1,8 +1,17 @@
 package com.mx.EjemploSpring.services;
 
-import com.mx.EjemploSpring.model.Persona;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+import com.mx.EjemploSpring.model.Persona;
+import com.mx.EjemploSpring.repository.PersonaRepository;
+
+@Service
+@Qualifier("generica") //le da un nombre al service
 public class PersonaGenericServiceImpl implements PersonaService{
+	//autowired sirve para pedirle a spring una instancia
+	@Autowired PersonaRepository personaRepository;
 	
 	public Persona obtenerPersona() {
 		//Se crea la persona
@@ -13,5 +22,9 @@ public class PersonaGenericServiceImpl implements PersonaService{
 		p.setNombre("Serge");
 		//Retornamos a la persona
 		return p;
+	}
+	public void insertarPersona(Persona p){
+		//Guardamos en la base de datos
+		personaRepository.save(p);
 	}
 }

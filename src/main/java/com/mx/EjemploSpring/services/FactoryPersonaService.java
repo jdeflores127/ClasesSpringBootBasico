@@ -1,6 +1,7 @@
 package com.mx.EjemploSpring.services;
 
 public class FactoryPersonaService {
+	
 	public PersonaService damePersona(String persona) {
 		if(persona.equals("Generica")) {			
 			return new PersonaGenericServiceImpl();
