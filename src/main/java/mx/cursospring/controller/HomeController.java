@@ -1,6 +1,8 @@
-package com.mx.EjemploSpring.controller;
+package mx.cursospring.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mx.EjemploSpring.model.Persona;
-import com.mx.EjemploSpring.services.FactoryPersonaService;
-import com.mx.EjemploSpring.services.PersonaGenericServiceImpl;
-import com.mx.EjemploSpring.services.PersonaScotiaServiceImpl;
-import com.mx.EjemploSpring.services.PersonaService;
+import mx.cursospring.model.Persona;
+import mx.cursospring.services.FactoryPersonaService;
+import mx.cursospring.services.PersonaGenericServiceImpl;
+import mx.cursospring.services.PersonaScotiaServiceImpl;
+import mx.cursospring.services.PersonaService;
 
 @Controller
 public class HomeController {
@@ -89,11 +91,13 @@ public class HomeController {
 	@PostMapping("/guardaFormulario")
 	public String procesarRespuestaFormulario(
 			@RequestParam("nombreForm") String nombre,
-			@RequestParam("edadForm") int edad){
+			@RequestParam("edadForm") int edad,
+			@RequestParam("fechaForm") Date fecha){
 		
 		Persona p=new Persona();
 		p.setNombre(nombre);
 		p.setEdad(edad);
+		p.setFechaNacimiento(fecha);
 		
 		System.out.println("el nombre es: "+nombre);
 		System.out.println("la edad es: "+edad);
@@ -102,6 +106,12 @@ public class HomeController {
 		
 		
 		return "formulario";
+	}
+	@GetMapping("/mostrarLista")
+	public String mostrarLista(Model model){
+		List<Persona> personas_list=ps.obtenerlistaPersonas();
+		model.addAttribute("lista_personas", personas_list);
+		return "mostrarLista";
 	}
 	
 

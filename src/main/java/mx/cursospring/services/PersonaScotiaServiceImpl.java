@@ -1,9 +1,11 @@
-package com.mx.EjemploSpring.services;
+package mx.cursospring.services;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.mx.EjemploSpring.model.Persona;
+import mx.cursospring.model.Persona;
 @Service
 @Qualifier("scotia") //le da un nombre al service
 public class PersonaScotiaServiceImpl implements PersonaService{
@@ -26,6 +28,11 @@ public class PersonaScotiaServiceImpl implements PersonaService{
 	}
 	public void insertarPersona(Persona p){
 		
+	}
+	@Override
+	public List<Persona> obtenerlistaPersonas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

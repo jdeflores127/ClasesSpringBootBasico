@@ -1,4 +1,4 @@
-package com.mx.EjemploSpring.services;
+package mx.cursospring.services;
 
 public class FactoryPersonaService {
 	

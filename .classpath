@@ -34,5 +34,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Hitss/Desktop/BaseDatosEmbebida/hsqldb-2.5.1/hsqldb/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/VI9XXSW/.m2/repository/com/oracle/ojdbc6/12.1.0.2/ojdbc6-12.1.0.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

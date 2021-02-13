@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario</title>
+</head>
+<body>
+	<h1>mostrar lista</h1>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>nombre</th>
+			<th>edad</th>
+		</tr>
+		<tr th:each="persona_item: ${lista_personas}">
+			<td><p th:text="${persona_item.id}"/></td>
+			<td><p th:text="${persona_item.nombre}"/></td>
+			<td><p th:text="${persona_item.edad}"/></td>
+			<td><p th:text="${#dates.format(persona_item.fechaNacimiento, 'dd-MM-yyyy')}"/></td>	
+		</tr>
+	</table>
+</body>
+</html>

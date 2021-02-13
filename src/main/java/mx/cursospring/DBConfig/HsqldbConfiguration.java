@@ -1,10 +1,12 @@
-package com.mx.EjemploSpring.DBConfig;
+package mx.cursospring.DBConfig;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef="PersonaEntityManagerFactory",
 		transactionManagerRef="userTransactionManagerFactory",
-		basePackages = {"com.mx.EjemploSpring.repository"})
+		basePackages = {"mx.cursospring.repository"})
 
 public class HsqldbConfiguration {
 	@Value("${hsql.datasource.url}") private String url;
@@ -37,11 +39,17 @@ public class HsqldbConfiguration {
 	@Bean(name="personaDataSource")
 	public DataSource userDataSource(){
 		//Configurar conexion a base de datos
-		DriverManagerDataSource datasource= new DriverManagerDataSource();
+		BasicDataSource datasource= new BasicDataSource();
+		
 		datasource.setUrl(url);
 		datasource.setDriverClassName(driverClassName);
 		datasource.setUsername(user);
 		datasource.setPassword(password);
+		datasource.setInitialSize(100);
+		datasource.setMaxActive(100);
+		datasource.setMaxIdle(15);
+		datasource.setMaxWait(10000);
+		
 		return datasource;
 	}
 	@Bean(name="PersonaEntityManagerFactory")
@@ -58,7 +66,7 @@ public class HsqldbConfiguration {
 		emf.setDataSource(userDataSource());
 		
 		//paso 2
-		emf.setPackagesToScan("com.mx.EjemploSpring.model");
+		emf.setPackagesToScan("mx.cursospring.model");
 		
 		//paso 3
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

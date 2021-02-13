@@ -1,4 +1,4 @@
-package com.mx.EjemploSpring;
+package mx.cursospring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

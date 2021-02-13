@@ -1,4 +1,6 @@
-package com.mx.EjemploSpring.model;
+package mx.cursospring.model;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,8 @@ public class Persona {
 	private String nombre;
 	@Column(name="edad")
 	private int edad;
+	@Column(name="fechaNacimiento")
+	private Date fechaNacimiento;
 	
 	public int getId() {
 		return id;
@@ -36,6 +40,12 @@ public class Persona {
 	}
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	
