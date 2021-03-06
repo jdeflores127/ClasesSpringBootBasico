@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,6 +18,7 @@ import mx.cursospring.repository.PersonaRepository;
 
 @Service
 @Qualifier("generica") //le da un nombre al service
+@Profile({"generic","default"})
 public class PersonaGenericServiceImpl implements PersonaService{
 	//autowired sirve para pedirle a spring una instancia
 	@Autowired PersonaRepository personaRepository;
@@ -27,7 +29,7 @@ public class PersonaGenericServiceImpl implements PersonaService{
 		//Se llenan los datos de persona
 		p.setId(1);
 		p.setEdad(30);
-		p.setNombre("Serge");
+		p.setNombre("Generica");
 		//Retornamos a la persona
 		return p;
 	}
