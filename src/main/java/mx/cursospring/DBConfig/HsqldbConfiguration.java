@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -67,7 +68,7 @@ public class HsqldbConfiguration {
 		
 		//paso 2
 		emf.setPackagesToScan("mx.cursospring.model");
-		
+
 		//paso 3
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		emf.setJpaVendorAdapter(vendorAdapter);
@@ -85,12 +86,9 @@ public class HsqldbConfiguration {
 	
 	//Se configura la transaccionalidad 
 	@Bean(name="userTransactionManagerFactory")
-	public PlatformTransactionManager transactionManager(){
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emfb){
 		JpaTransactionManager jtm= new JpaTransactionManager();
-		jtm.setEntityManagerFactory(personaEntityManagerFactory().getObject());
+		jtm.setEntityManagerFactory(emfb);
 		return jtm;
-	}
-	
-	
-	
+	}	
 }

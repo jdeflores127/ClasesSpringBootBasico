@@ -2,21 +2,39 @@ package mx.cursospring.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="HistoricoMovimientos")
 public class Historico {
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE) //los id los va a generar la db
 	private Long idHistorico;
-	private String idPersona;
+	@Column
+	private int idPersona;
+	@Column
 	private String tipoMovimiento;
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaMovimiento;
+	
 	public Long getIdHistorico() {
 		return idHistorico;
 	}
 	public void setIdHistorico(Long idHistorico) {
 		this.idHistorico = idHistorico;
 	}
-	public String getIdPersona() {
+	public int getIdPersona() {
 		return idPersona;
 	}
-	public void setIdPersona(String idPersona) {
+	public void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
 	public String getTipoMovimiento() {

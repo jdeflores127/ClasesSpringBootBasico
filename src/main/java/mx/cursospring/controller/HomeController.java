@@ -94,7 +94,7 @@ public class HomeController {
 		
 		System.out.println("el nombre es: "+nombre);
 		System.out.println("la edad es: "+edad);
-		
+		System.out.println("la edad es: "+fecha);
 		ps.insertarPersona(p);
 		
 		
@@ -102,7 +102,8 @@ public class HomeController {
 	}
 	@GetMapping("/mostrarLista")
 	public String mostrarLista(Model model){
-		List<Persona> personas_list=ps.obtenerlistaPersonas();
+		List<Persona> personas_list;
+			personas_list = ps.obtenerlistaPersonas();
 		model.addAttribute("lista_personas", personas_list);
 		return "mostrarLista";
 	}

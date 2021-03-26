@@ -3,6 +3,9 @@ package mx.cursospring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import mx.cursospring.model.OrdenPago;
+import mx.cursospring.model.Persona;
+
 @SpringBootApplication
 public class Launcher {
 
