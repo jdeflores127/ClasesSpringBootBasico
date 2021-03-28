@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mx.cursospring.model.Persona;
-import mx.cursospring.services.FactoryPersonaService;
-import mx.cursospring.services.PersonaGenericServiceImpl;
-import mx.cursospring.services.PersonaScotiaServiceImpl;
 import mx.cursospring.services.PersonaService;
 
 @Controller
 public class HomeController {
 	
-	@Autowired @Qualifier("generica") PersonaService ps;
+	@Autowired PersonaService ps;
 	
 	@GetMapping("/home")
 	public String goHome() {
@@ -35,13 +31,10 @@ public class HomeController {
 	
 	@GetMapping("/mostrarPersona")
 	public String goMostrarPersona(Model model) {
-		//Obtener un objeto de java
-		FactoryPersonaService ps = new FactoryPersonaService(); 
-		PersonaService p = ps.damePersona("Generica");
-		Persona persona = p.obtenerPersona();
+		Persona persona = ps.obtenerPersona();
 		//La clase Model sirve para mandar objetos a la vista
 		model.addAttribute("personaModel",persona);
-		return "home";
+		return "mostrarPersona";
 	}
 	
 	@GetMapping("/verPersona")
@@ -101,7 +94,7 @@ public class HomeController {
 		
 		System.out.println("el nombre es: "+nombre);
 		System.out.println("la edad es: "+edad);
-		
+		System.out.println("la edad es: "+fecha);
 		ps.insertarPersona(p);
 		
 		
@@ -109,7 +102,8 @@ public class HomeController {
 	}
 	@GetMapping("/mostrarLista")
 	public String mostrarLista(Model model){
-		List<Persona> personas_list=ps.obtenerlistaPersonas();
+		List<Persona> personas_list;
+			personas_list = ps.obtenerlistaPersonas();
 		model.addAttribute("lista_personas", personas_list);
 		return "mostrarLista";
 	}
